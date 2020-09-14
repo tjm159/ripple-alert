@@ -1,0 +1,21 @@
+# Data directory
+data/
+
+# Batch files
+*.bat
+
+# IDE directories
+.vscode/
+.idea/
+
+# Python environments
+env/
+venv/
+
+# Build specific
+/dist
+/build
+.pyd
+
+# Python cache
+__pycache__/
