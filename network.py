@@ -34,13 +34,15 @@ def get_content(url):
     }
 
     try:
-        response = requests.get(url, stream=True, headers=headers) # Workaround syntax for pylint issue #1437
+        response = requests.get(url, stream=True, headers=headers) 
         with contextlib.closing(response):
             if __successful_response(response) and response.content:
                 c = response.content
                 return response.content
             else:
-                raise NetworkException(f'Error during request to {url}: Request returned a non-200 status code or empty content')
+                raise NetworkException(f'Error during request to {url}: ' + 
+                                        'Request returned a non-200 status ' + 
+                                        'code or empty content')
 
     except RequestException as e:
         raise NetworkException(f'Error during requests to {url}: {e}')
@@ -48,7 +50,8 @@ def get_content(url):
 
 def __get_user_agent():
     """
-    Get a common user agent that's gets placed in the header of the html get request
+    Get a common user agent that's gets placed in the header of the html get 
+    request
 
     Returns:
         str: user agent
@@ -56,9 +59,12 @@ def __get_user_agent():
     
     # Common user agents
     user_agents = [
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7',
-        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36',
-        'Mozilla/5.0 (iPad; CPU OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13F69 Safari/601.1'
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 ' +
+            '(KHTML, like Gecko) Version/9.1.2 Safari/601.7.7',
+        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like ' +
+            'Gecko) Chrome/48.0.2564.109 Safari/537.36',
+        'Mozilla/5.0 (iPad; CPU OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 ' +
+            '(KHTML, like Gecko) Version/9.0 Mobile/13F69 Safari/601.1'
     ]
 
     if len(user_agents) > 1:

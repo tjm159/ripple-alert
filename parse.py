@@ -34,7 +34,8 @@ def parse_content(content):
             v = __remove_prefix(v, 'trellis-')
             v = __remove_suffix(v, '-x86.msi')
             return v
-    raise ParseException('Error during parsing: Unable to find trellis href within the given content')
+    raise ParseException('Error during parsing: Unable to find trellis href ' + 
+                         'within the given content')
 
 
 def __remove_prefix(text, prefix):
